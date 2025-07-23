@@ -8,3 +8,8 @@
 
 #### Output : 
 ![alt text](image.png)
+
+#### How to use this Application ?
+- Download the repository
+- Required modules => **index.html, script.js, style.css**
+- Open index.html on any browser or run with live server
