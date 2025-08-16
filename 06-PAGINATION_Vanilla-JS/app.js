@@ -37,28 +37,27 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (page > 1) {
-        const prevButton = createPaginationButton("⏮️", () => {
-          selectPageHandler(page - 1);
-        });
+        const prevButton = document.createElement("button");
+        prevButton.textContent = "⏪";
+        prevButton.dataset.page = page - 1;
         pagination.appendChild(prevButton);
       }
 
       // Display Numbers Buttons
       for (let i = 0; i < products.length / 10; i++) {
-        const pageButtone = createPaginationButton(
-          i + 1,
-          () => {
-            selectPageHandler(i + 1);
-          },
-          page === i + 1
-        );
-        pagination.appendChild(pageButtone);
+        const pageButton = document.createElement("button");
+        pageButton.textContent = i + 1;
+        pageButton.dataset.page = i + 1;
+        if (page === i + 1) {
+          pageButton.classList.add("pagination_selected");
+        }
+        pagination.appendChild(pageButton);
       }
 
       if (page < products.length / 10) {
-        const nextButton = createPaginationButton("⏩", () => {
-          selectPageHandler(page + 1);
-        });
+        const nextButton = document.createElement("button");
+        nextButton.textContent = "⏩";
+        nextButton.dataset.page = page + 1;
         pagination.appendChild(nextButton);
       }
     }
@@ -66,17 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
     app.innerHTML = "";
     app.appendChild(productsContainer);
     app.appendChild(pagination);
-  };
 
-  const createPaginationButton = (text, clickHandler, isSelected = false) => {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.addEventListener("click", clickHandler);
-
-    if (isSelected) {
-      button.classList.add("pagination_selected");
-    }
-    return button;
+    pagination.addEventListener("click", function (event) {
+      if (event.target.tagName === "BUTTON") {
+        const selectedPage = Number(event.target.dataset.page);
+        selectPageHandler(selectedPage);
+      }
+    });
   };
 
   const selectPageHandler = (selectedPage) => {
