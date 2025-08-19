@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    height: 100px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#add-box-form {
+    padding: 10px;
+}
+
+input {
+    width: 10%;
+}
+
+button {
+    padding: 4px 8px;
+    font-size: 14px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: rgba(46, 159, 40, 0.808);
+}
